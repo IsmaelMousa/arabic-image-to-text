@@ -108,8 +108,8 @@ connected letters.
 
 |        Model         |  Training Loss  | Validation Loss |  Parameters  | Convergence Speed | Edit Distance |
 |:--------------------:|:---------------:|:---------------:|:------------:|:-----------------:|:-------------:|
-|     From Scratch     | 349.96 to 35.30 |   Fluctuating   | 7.19 million |       Slow        |    Higher     |
-| ResNet50 Pretrained  |  78.55 to 2.68  | 56.19 to 23.62  |  31 million  |       Fast        |     Lower     |
+|     Scratch          | 349.96 to 35.30 |   Fluctuating   | 7.19 million |       Slow        |    Higher     |
+| ResNet50             |  78.55 to 2.68  | 56.19 to 23.62  |  31 million  |       Fast        |     Lower     |
 
 ## Conclusion
 
