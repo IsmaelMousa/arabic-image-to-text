@@ -1,9 +1,6 @@
 # Arabic Image to Text (OCR)
 
-Harnessing the power of deep learning to bridge the gap between Arabic visual text and digital content, this project
-explores advanced neural network architectures to accurately interpret and convert Arabic handwritten and printed text
-into editable formats. Through innovative use of convolutional and recurrent networks, we aim to overcome the unique
-challenges posed by the Arabic script.
+Build an end-to-end arabic image-to-text system using a CNN-LSTM architecture, employing resnet50, resnet101, and resnet152 as feature extractors, bidirectional LSTMs for sequence modeling, and CTC loss with beam search decoding to tackle the alignment-free nature and complexities of cursive arabic
 
 ## Abstract
 
