@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نظام التعرف على النصوص العربية</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+  <div class="max-w-xl mx-auto mt-20 p-6 bg-white shadow-xl rounded-xl">
+    <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">نظام التعرف على النصوص العربية</h1>
+
+    <form action="/predict/" method="post" enctype="multipart/form-data" class="space-y-6">
+      <div class="flex items-center justify-center w-full">
+        <label for="file-upload"
+               class="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition duration-300 border-blue-300 text-blue-600 relative overflow-hidden">
+
+          <!-- Image Preview Container -->
+          <div id="preview-container" class="absolute inset-0 flex items-center justify-center">
+            <img id="image-preview" class="max-h-full max-w-full hidden" />
+          </div>
+
+          <!-- Upload Icon & Text -->
+          <div id="upload-text" class="flex flex-col items-center justify-center pt-5 pb-6 z-10">
+            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-blue-400" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M7 16V4a1 1 0 011-1h8a1 1 0 011 1v12m-4 4h-4m4 0a4 4 0 01-8 0m8 0a4 4 0 01-8 0"/>
+            </svg>
+            <p class="mb-1 text-sm">انقر لاختيار صورة أو اسحبها هنا</p>
+            <p class="text-xs text-gray-500">PNG, JPG, JPEG</p>
+          </div>
+
+          <!-- Hidden File Input -->
+          <input id="file-upload" name="file" type="file" class="hidden" accept="image/*" required onchange="previewImage(event)" />
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit"
+              class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300 shadow">
+        توقّع النص
+      </button>
+    </form>
+
+    <!-- Display Prediction Result -->
+    {% if prediction %}
+    <div class="mt-8 border-t pt-6">
+      <h2 class="text-lg font-semibold mb-2 text-gray-700">النص المتوقع:</h2>
+      <p dir="rtl" class="text-xl bg-gray-100 rounded p-4 text-right font-bold text-green-700">
+        {{ prediction }}
+      </p>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Image Preview Script -->
+  <script>
+    function previewImage(event) {
+      const file = event.target.files[0];
+      const preview = document.getElementById("image-preview");
+      const uploadText = document.getElementById("upload-text");
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+          preview.classList.remove("hidden");
+          uploadText.classList.add("hidden");
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "";
+        preview.classList.add("hidden");
+        uploadText.classList.remove("hidden");
+      }
+    }
+  </script>
+
+</body>
+</html>
